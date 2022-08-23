@@ -3,8 +3,10 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Login from '../components/login'
 import { PrismaClient } from '@prisma/client';
+import Form from '../components/Form';
+import ReactMarkdown from 'react-markdown';
+import prisma from '../lib/prisma'
 
-const prisma = new PrismaClient();
 
 export async function getServerSideProps() {
    const query = await prisma.User.findMany() 
@@ -27,18 +29,36 @@ export default function Home(data) {
       <div>
         <Login />
       </div>
-      {data.data.map((item, index) => {
-        return (
-          <div key={index}>
+      <Form />
+      <div>
+        <ReactMarkdown>
+        ## Heading 
+        </ReactMarkdown>
+      </div>
+      <div>
+        {data.data.map((value, index) => {
+          if(value.blogs !== []){
+          return (
+            <div key={index}>
+              <Image key={value.image} src={value.image} width="25px" height="25px"/>
+              <h1 key={value.name}>{value.name}</h1>
+              <div className={styles.blogsWrapper}>
+              {value.blogs.map((value , index) => {
+                return (
+                  <ReactMarkdown className={styles.blog} name="blog" key={index}>{value}</ReactMarkdown>
+                )
+              })}
+              </div>
+            </div>
+          )}else if(value.blogs === []){
+            return (
             <div>
-              <Image src={item.image} width="20px" height="20px"/>
-
-            </div>
-            <p >{item.name}</p>
-            <p>{item.blogs[0]}</p>
-            </div>
-        )
-      })}
+              
+              </div>
+              )
+          }
+        })}
+      </div> 
  
     </div>
   )
