@@ -5,7 +5,8 @@ import Login from '../components/login'
 import { PrismaClient } from '@prisma/client';
 import Form from '../components/Form';
 import ReactMarkdown from 'react-markdown';
-import prisma from '../lib/prisma'
+import prisma from '../lib/prisma';
+import { motion } from 'framer-motion';
 
 
 export async function getServerSideProps() {
@@ -19,7 +20,9 @@ export async function getServerSideProps() {
 
 export default function Home(data) {
   console.log(data.data)
+  
   return (
+    
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
@@ -30,11 +33,7 @@ export default function Home(data) {
         <Login />
       </div>
       <Form />
-      <div>
-        <ReactMarkdown>
-        ## Heading 
-        </ReactMarkdown>
-      </div>
+      
       <div>
         {data.data.map((value, index) => {
           if(value.blogs !== []){
@@ -61,5 +60,6 @@ export default function Home(data) {
       </div> 
  
     </div>
+  
   )
 }

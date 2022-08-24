@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useSession , signIn } from "next-auth/react";
+import Link from "next/link";
 
 
 export default function Form() {
-
+    const { data: session } = useSession();
     const [post, setPost] = useState("")
 
     const handleSubmit = async (e) => {  
@@ -22,8 +24,8 @@ export default function Form() {
         })
         
         setPost('')
-    }
-
+    } 
+    if(session){
     return (
         <div>
         <form onSubmit={handleSubmit}>
@@ -31,5 +33,11 @@ export default function Form() {
             <button type="submit">Post</button>
         </form>
         </div>
+    )}else{
+    return (
+        <div>
+            <Link href=""><a onClick={() => signIn()}>Sign In to post a blog</a></Link>
+        </div>
     )
+}
 }
