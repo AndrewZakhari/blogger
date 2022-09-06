@@ -7,6 +7,7 @@ import Form from '../components/Form';
 import ReactMarkdown from 'react-markdown';
 import prisma from '../lib/prisma';
 import { motion } from 'framer-motion';
+import useSWR from 'swr';
 
 
 export async function getServerSideProps() {
@@ -19,10 +20,20 @@ export async function getServerSideProps() {
 }
 
 export default function Home(data) {
+
   console.log(data.data)
-  
+
+  const fetcher = (...args) => fetch(...args).then(res => res.json())
+
+  const { data1, error } = useSWR('/api/sessionCheck', fetcher)
+
+  if(error) {
+    const timer = setTimeout(() => {
+      return
+    }, 2000)
   return (
-    
+   <>
+   {clearTimeout(timer)}
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
@@ -30,10 +41,11 @@ export default function Home(data) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
+      <div>
         <Login />
       </div>
       <Form />
-      
+      </div>    
       <div>
         {data.data.map((value, index) => {
           if(value.blogs !== []){
@@ -60,6 +72,16 @@ export default function Home(data) {
       </div> 
  
     </div>
-  
+        </>
   )
 }
+  if(!data1) return (
+    <div className={styles.loading}>
+    <div className={styles.loadingio_spinner_spinner_ix04iue0fj}><div className={styles.ldio_yicf5g0oapf}>
+<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+</div></div>
+
+    </div>
+  )
+}
+

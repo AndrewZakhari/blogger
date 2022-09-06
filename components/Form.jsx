@@ -5,12 +5,13 @@ import Link from "next/link";
 
 export default function Form() {
     const { data: session } = useSession();
-    const [post, setPost] = useState("")
+    const [post, setPost] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {  
         e.preventDefault()
         
-        console.log(e.target.blog.value)
+        setLoading(true)
         const form = new FormData(e.target)
         const formData = Object.fromEntries(form.entries())
 
@@ -22,18 +23,28 @@ export default function Form() {
             },
             method: 'POST',
         })
-        
+        setLoading(false) 
         setPost('')
+        window.location.reload();
+        return
     } 
     if(session){
     return (
         <div>
-        <form onSubmit={handleSubmit}>
+            {!loading && 
+            <form onSubmit={handleSubmit}>
             <textarea onChange={(e) => setPost(e.target.value)} placeholder="Write your blog in markdown" value={post} name="blog" required/>
             <button type="submit">Post</button>
-        </form>
+            </form>
+        }
+        {loading && 
+        <div>
+            <p>...Loading</p>
+        </div> 
+         }
+        
         </div>
-    )}else{
+        )}else{
     return (
         <div>
             <Link href=""><a onClick={() => signIn()}>Sign In to post a blog</a></Link>

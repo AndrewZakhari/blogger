@@ -14,7 +14,8 @@ export default function Login() {
         <button onClick={() => signIn()}>Sign in</button> 
         </div>
         )
-    }else {
+    }else if(session){
+        
         return (
        
         <div className={styles.signOut}>
