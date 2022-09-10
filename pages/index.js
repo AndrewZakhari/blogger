@@ -8,6 +8,7 @@ import ReactMarkdown from 'react-markdown';
 import prisma from '../lib/prisma';
 import { motion } from 'framer-motion';
 import useSWR from 'swr';
+import Loader from '../components/Loader';
 
 
 export async function getServerSideProps() {
@@ -51,8 +52,12 @@ export default function Home(data) {
           if(value.blogs !== []){
           return (
             <div key={index}>
-              <Image key={value.image} src={value.image} width="25px" height="25px"/>
+              <div className={styles.userWrapper}>
+                <div className={styles.imageWrapper}>
+              <Image key={value.image} src={value.image} width="30px" height="30px" /> 
+              </div>
               <h1 key={value.name}>{value.name}</h1>
+              </div>
               <div className={styles.blogsWrapper}>
               {value.blogs.map((value , index) => {
                 return (
@@ -77,9 +82,7 @@ export default function Home(data) {
 }
   if(!data1) return (
     <div className={styles.loading}>
-    <div className={styles.loadingio_spinner_spinner_ix04iue0fj}><div className={styles.ldio_yicf5g0oapf}>
-<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-</div></div>
+      <Loader />
 
     </div>
   )

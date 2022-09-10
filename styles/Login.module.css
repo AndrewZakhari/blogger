@@ -1,1 +1,15 @@
-
+.signOut{
+    display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: 50px;
+    background-color: #0f0e17;
+}
+.home{
+    background-color: #ff8906;
+    border-radius: 50%;
+}
+.profile{
+    background-color: #ff8906;
+    border-radius: 50%;
+}

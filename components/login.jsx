@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import styles from '../styles/Login.module.css';
 import Image from 'next/image';
 
+import Link from 'next/link';
+
 export default function Login() {
     const { data: session} = useSession();  
     
@@ -12,6 +14,7 @@ export default function Login() {
              <div className={styles.signIn}>
         Not signed in <br />
         <button onClick={() => signIn()}>Sign in</button> 
+        
         </div>
         )
     }else if(session){
@@ -19,10 +22,24 @@ export default function Login() {
         return (
        
         <div className={styles.signOut}>
-            Signed In as {session.user.name} < br/>
             <button onClick={() => signOut()}>
             Sign out
             </button>
+            <div className={styles.profile}>
+            <Link className={styles.profile} href={`/${session.user.name}`}>
+                <a>
+            <Image src="/account.svg" height="30px" width="30px"/>
+                </a>
+            </Link>   
+            </div>
+            <div className={styles.home}>
+            <Link  href="/">
+                <a>
+            <Image src="/home.svg" height="30px" width="30px" />
+            </a>
+            </Link> 
+            </div>
+            
             </div>
         )
         } 

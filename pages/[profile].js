@@ -6,7 +6,9 @@ import { useSession } from "next-auth/react";
 import { useState } from "react";
 import axios from "axios";
 import Form from '../components/Form'
+import styles from '../styles/Profile.module.css'
 import Login from '../components/login'
+import Loader from "../components/Loader";
 
 
 
@@ -97,7 +99,10 @@ export default function Profile() {
     return (
         
         <>
-        {loading && <div>...Loading</div>}
+        {loading && 
+        <div className={styles.loading}>
+        <Loader />
+        </div>}
         {!loading &&
         
             <>
@@ -114,7 +119,7 @@ export default function Profile() {
                    return(
                     <div key={index}>
                     <li> <ReactMarkdown>{value}</ReactMarkdown></li>
-                    <button value={index} onClick={handleDelete}>Delete</button>
+                    <button value={value} onClick={handleDelete}>Delete</button>
                     </div>
                    )
                 })}

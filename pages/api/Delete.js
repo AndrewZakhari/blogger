@@ -13,7 +13,11 @@ export default async function handler(req, res) {
     })
     const {blogs} = user
 
-    const updatedBlogs = blogs.splice(value + 1, blogs.length)
+    const updatedBlogs = blogs.filter((i) => {
+        if(i !== value){
+            return i
+        }
+    })
 
     const update = await prisma.User.update({
         where: {
@@ -25,8 +29,6 @@ export default async function handler(req, res) {
     })
 
     console.log(update)
-
-
 
     res.status(200).redirect(`/${session.user.name}`)
 }
