@@ -28,7 +28,7 @@ export default function Login() {
             <div className={styles.profile}>
             <Link className={styles.profile} href={`/${session.user.name}`}>
                 <a>
-            <Image src="/account.svg" height="30px" width="30px"/>
+            <Image src={session.user.image} layout="responsive" height="30px" width="30px"/> 
                 </a>
             </Link>   
             </div>

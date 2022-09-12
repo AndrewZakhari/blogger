@@ -9,7 +9,14 @@
     background-color: #ff8906;
     border-radius: 50%;
 }
+.home:hover{
+    background-color: #aa7000;
+}
 .profile{
     background-color: #ff8906;
     border-radius: 50%;
+    width: 30px;
+    overflow: auto;
+    height: 30px;
+    box-sizing: border-box;
 }

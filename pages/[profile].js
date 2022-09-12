@@ -125,7 +125,7 @@ export default function Profile() {
                 })}
             </ul>
         </div>
-        <button value={session.user.name} onClick={() => {setDeleteState(true)}} >Delete Account</button>
+        <button value={session.user.name} onClick={() => {setDeleteState(!deleteState)}} >Delete Account</button>
         {deleteState && 
         <>
         <div>

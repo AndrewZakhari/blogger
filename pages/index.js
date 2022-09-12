@@ -9,6 +9,8 @@ import prisma from '../lib/prisma';
 import { motion } from 'framer-motion';
 import useSWR from 'swr';
 import Loader from '../components/Loader';
+import { useState } from 'react';
+import Link from 'next/link';
 
 
 export async function getServerSideProps() {
@@ -21,6 +23,8 @@ export async function getServerSideProps() {
 }
 
 export default function Home(data) {
+
+  const {clicked, setClick} = useState(false);
 
   console.log(data.data)
 
@@ -61,7 +65,9 @@ export default function Home(data) {
               <div className={styles.blogsWrapper}>
               {value.blogs.map((value , index) => {
                 return (
+                  
                   <ReactMarkdown className={styles.blog} name="blog" key={index}>{value}</ReactMarkdown>
+                  
                 )
               })}
               </div>
