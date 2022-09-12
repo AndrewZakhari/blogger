@@ -9,6 +9,69 @@
   max-height: 20vh; 
   overflow: hidden;
 }
+.openedBlog{
+
+  position: relative;
+  border: 10px white solid;
+  border-radius: 5px;
+  background-color: #fffffe;
+  color: black;
+  box-shadow: #777676 1px 5px 5px;
+  box-sizing: content-box;
+  max-width: 90vw;
+  max-height: 90vh;
+  justify-self: center;
+  align-content: center;
+
+}
+.openedBlogWrapper{
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  align-items: center;
+}
+.viewLess{
+  width: fit-content;
+  background-color: black;
+  font-weight: 1000;
+
+}
+.viewLess:hover{
+  cursor: pointer;
+  text-decoration: underline;
+  background-color: black;
+}
+.viewMore{
+  width: fit-content;
+  background-color: black;
+  font-weight: 1000;
+
+}
+.viewMore:hover{
+  cursor: pointer;
+  text-decoration: underline;
+  background-color: black;
+}
+.users{
+  position: absolute;
+  padding-right: 30px;
+  padding-top: 20px;
+  border: 2px solid #606050;
+  border-radius: 5px;
+  background-color: black;
+  align-items: center;
+  display:flex;
+  flex-direction: column;
+  top: 0%;
+  right: 0%;
+  font-size: 30px;
+  z-index: 999;
+}
+.nameAndImage{
+  display: flex;
+  gap: 15px;
+  padding-left: 20px;
+}
 
 .readMore{
   display: flex;
@@ -38,8 +101,9 @@
 }
 .imageWrapper{
   max-width: fit-content;
-  border-radius: 50%;
+  border-radius: 100vw;
   align-self: center;
+  overflow: hidden;
 }
 
 .container{

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSession , signIn } from "next-auth/react";
 import Link from "next/link";
-
+import styles from '../styles/Form.module.css'
 
 export default function Form() {
     const { data: session } = useSession();
@@ -32,9 +32,9 @@ export default function Form() {
     return (
         <div>
             {!loading && 
-            <form onSubmit={handleSubmit}>
-            <textarea onChange={(e) => setPost(e.target.value)} placeholder="Write your blog in markdown" value={post} name="blog" required/>
-            <button type="submit">Post</button>
+            <form className={styles.form} onSubmit={handleSubmit}>
+            <textarea className={styles.txtArea} onChange={(e) => setPost(e.target.value)} placeholder="Write your blog in markdown" value={post} name="blog" required/>
+            <button className={styles.button} type="submit">Post</button>
             </form>
         }
         {loading && 

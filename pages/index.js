@@ -14,7 +14,7 @@ import Link from 'next/link';
 
 
 export async function getServerSideProps() {
-   const query = await prisma.User.findMany() 
+   const query = await prisma.user.findMany() 
    return {
     props: {
       data: query
@@ -24,9 +24,15 @@ export async function getServerSideProps() {
 
 export default function Home(data) {
 
-  const {clicked, setClick} = useState(false);
-
   console.log(data.data)
+  
+  const [openedBlog , setOpenedBlog]  = useState()
+
+  const openBlog = (e) => {
+    e.preventDefault();
+console.log(e.target.value)
+    setOpenedBlog(e.target.value)
+  }
 
   const fetcher = (...args) => fetch(...args).then(res => res.json())
 
@@ -64,13 +70,37 @@ export default function Home(data) {
               </div>
               <div className={styles.blogsWrapper}>
               {value.blogs.map((value , index) => {
+                if(value === openedBlog) {
+                  console.log(openedBlog)
+                  return (
+                    <div className={styles.openedBlogWrapper}>
+                      <ReactMarkdown className={styles.openedBlog} name="blog" key={index}>{value}</ReactMarkdown>
+                      <button className={styles.viewLess} onClick={() => setOpenedBlog()}>View less</button>
+                    </div>
+                  )
+                }
+                else{
                 return (
-                  
+                 <div> 
                   <ReactMarkdown className={styles.blog} name="blog" key={index}>{value}</ReactMarkdown>
-                  
+                  <button className={styles.viewMore} value={value} onClick={openBlog}>View More</button>
+                 </div> 
                 )
+                } 
               })}
               </div>
+              <>
+              
+              <div className={styles.users}>
+                <h5 style={{margin: '0px'}}> Users </h5>
+                <div className={styles.nameAndImage}>
+                <div className={styles.imageWrapper}>
+        <Image src={value.image} width="30px" height="30px"/>
+        </div>
+        <p>{value.name}</p>
+        </div>
+        </div>
+        </>
             </div>
           )}else if(value.blogs === []){
             return (
@@ -81,8 +111,9 @@ export default function Home(data) {
           }
         })}
       </div> 
- 
+
     </div>
+    
         </>
   )
 }
