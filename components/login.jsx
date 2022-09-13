@@ -27,14 +27,14 @@ export default function Login() {
             <div className={styles.profile}>
             <Link className={styles.profile} href={`/${session.user.name}`}>
                 <a>
-            <Image src={session.user.image} layout="responsive" height="30px" width="30px"/> 
+            <Image alt="" src={session.user.image} layout="responsive" height="30px" width="30px"/> 
                 </a>
             </Link>   
             </div>
             <div className={styles.home}>
             <Link  href="/">
                 <a>
-            <Image src="/home.svg" height="30px" width="30px" />
+            <Image alt="" src="/home.svg" height="30px" width="30px" />
             </a>
             </Link> 
             </div>

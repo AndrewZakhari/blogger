@@ -24,7 +24,6 @@ export async function getServerSideProps(cxt) {
 
 export default function Profile() {
     const [deleteState, setDeleteState] = useState(false);
-    const [accountStatus, setAccountStatus] = useState(false);
     const [loading, setLoading] = useState(false);
    
     const fetcher = (...args) => fetch(...args).then(res => res.json())
@@ -36,9 +35,11 @@ export default function Profile() {
 
    const router = useRouter();
 
+   let { data, error} = useSWR(`/api/${profile}`, fetcher)
+
    const { profile } = router.query;
    if(loading || !loading){
-    let { data, error} = useSWR(`/api/${profile}`, fetcher)
+    
    
     
     if(error) return <div className={styles.error}>Failed To Load, <br/> Check your Internet</div>
@@ -83,7 +84,7 @@ export default function Profile() {
             <Login />
             
             <div>
-         <Image src={data.image} width="30px" height="30px"/>
+         <Image alt="" src={data.image} width="30px" height="30px"/>
             </div>
             <h1>{data.name}</h1>
             <Link href={`mailto:${data.email}`}>
@@ -94,7 +95,7 @@ export default function Profile() {
             <ul>
                 {data.blogs.map((value, index) => {
                    return(
-                    <li> <ReactMarkdown key={index}>{value}</ReactMarkdown></li>
+                    <li key={index}> <ReactMarkdown key={index}>{value}</ReactMarkdown></li>
                    )
                 })}
             </ul>
@@ -116,7 +117,7 @@ export default function Profile() {
             <Login />
             <div className={styles.userWrapper}>
             <div className={styles.imageWrapper}>
-         <Image src={data.image} width="30px" height="30px"/>
+         <Image alt="" src={data.image} width="30px" height="30px"/>
             </div>
             <h1>{data.name}</h1>
             <Link href={`mailto:${data.email}`}>
@@ -130,8 +131,8 @@ export default function Profile() {
                 {data.blogs.map((value, index) => {
                    return(
                     <div key={index}>
-                    <li> <ReactMarkdown>{value}</ReactMarkdown></li>
-                    <button value={value} onClick={handleDelete}>Delete</button>
+                    <li> <ReactMarkdown key={index}>{value}</ReactMarkdown></li>
+                    <button key={index} value={value} onClick={handleDelete}>Delete</button>
                     <hr />
                     </div>
                    )
@@ -142,8 +143,8 @@ export default function Profile() {
         {deleteState && 
         <>
         <div className={styles.deleteContainer}>
-            You're about to Delete your account, <br />
-            This Action can't be undone!<br />
+            You are about to Delete your account, <br />
+            This Action can not be undone!<br />
             <div className={styles.buttonsWrapper}>
             <button className={styles.delete} value={session.user.name} onClick={deleteAccount}>Delete</button>
             <br/>

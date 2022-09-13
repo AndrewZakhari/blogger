@@ -64,7 +64,7 @@ console.log(e.target.value)
             <div key={index}>
               <div className={styles.userWrapper}>
                 <div className={styles.imageWrapper}>
-              <Image key={value.image} src={value.image} width="30px" height="30px" /> 
+              <Image alt="" key={value.image} src={value.image} width="30px" height="30px" /> 
               </div>
               <Link href={`/${value.name}`}>
                 <a>
@@ -99,7 +99,7 @@ console.log(e.target.value)
                 <h5 style={{margin: '0px'}}> Users </h5>
                 <div className={styles.nameAndImage}>
                 <div className={styles.imageWrapper}>
-        <Image src={value.image} width="30px" height="30px"/>
+        <Image alt="" src={value.image} width="30px" height="30px"/>
         </div>
         <Link className={styles.userLink} href={`/${value.name}`}>
           <a>
