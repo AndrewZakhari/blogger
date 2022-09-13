@@ -38,7 +38,7 @@ export default function Profile() {
 
     const router = useRouter();
 
-   const { profile } = router.query;
+   const profile = router.query.profile;
 
   
 
