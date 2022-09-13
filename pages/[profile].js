@@ -17,7 +17,7 @@ export async function getServerSideProps(cxt) {
 
     return {
         props:{
-
+            data: 'ServerSide'
         }
 }
 }
