@@ -9,6 +9,7 @@ import Form from '../components/Form'
 import styles from '../styles/Profile.module.css'
 import Login from '../components/login'
 import Loader from "../components/Loader";
+import Link from "next/link";
 
 
 
@@ -40,9 +41,9 @@ export default function Profile() {
     let { data, error} = useSWR(`/api/${profile}`, fetcher)
    
     
-    if(error) return <div>Failed To Load</div>
-    if(!data) return <div>...Loading</div>
-    if(data.blogs === undefined) return <div>404 User not found</div>
+    if(error) return <div className={styles.error}>Failed To Load, <br/> Check your Internet</div>
+    if(!data) return <div className={styles.loading}><Loader /></div>
+    if(data.blogs === undefined) return <div className={styles.notFound}>404 <br/> User not found</div>
     console.log(data)
    
 
@@ -78,13 +79,18 @@ export default function Profile() {
     if(!session){
     return (
         <>
-        <div>
+        <div className={styles.container}>
             <Login />
+            
             <div>
          <Image src={data.image} width="30px" height="30px"/>
             </div>
             <h1>{data.name}</h1>
+            <Link href={`mailto:${data.email}`}>
+                <a>
             <p>{data.email}</p>
+                </a>
+            </Link>
             <ul>
                 {data.blogs.map((value, index) => {
                    return(
@@ -106,13 +112,19 @@ export default function Profile() {
         {!loading &&
         
             <>
-        <div>
+        <div className={styles.container}>
             <Login />
-            <div>
+            <div className={styles.userWrapper}>
+            <div className={styles.imageWrapper}>
          <Image src={data.image} width="30px" height="30px"/>
             </div>
             <h1>{data.name}</h1>
+            <Link href={`mailto:${data.email}`}>
+                <a>
             <p>{data.email}</p>
+                </a>
+            </Link>
+            </div>
             <Form />
             <ul>
                 {data.blogs.map((value, index) => {
@@ -120,6 +132,7 @@ export default function Profile() {
                     <div key={index}>
                     <li> <ReactMarkdown>{value}</ReactMarkdown></li>
                     <button value={value} onClick={handleDelete}>Delete</button>
+                    <hr />
                     </div>
                    )
                 })}
@@ -128,11 +141,14 @@ export default function Profile() {
         <button value={session.user.name} onClick={() => {setDeleteState(!deleteState)}} >Delete Account</button>
         {deleteState && 
         <>
-        <div>
+        <div className={styles.deleteContainer}>
             You're about to Delete your account, <br />
-            This Action can't be undone!
-            <button value={session.user.name} onClick={deleteAccount}>Delete</button>
-            <button onClick={() => {setDeleteState(false)}}>Keep Account</button>
+            This Action can't be undone!<br />
+            <div className={styles.buttonsWrapper}>
+            <button className={styles.delete} value={session.user.name} onClick={deleteAccount}>Delete</button>
+            <br/>
+            <button className={styles.keep} onClick={() => {setDeleteState(false)}}>Keep Account</button>
+            </div>
         </div>
         </>
         }

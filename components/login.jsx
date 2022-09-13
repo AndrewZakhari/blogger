@@ -11,9 +11,8 @@ export default function Login() {
     if(!session) {
         
         return (
-             <div className={styles.signIn}>
-        Not signed in <br />
-        <button onClick={() => signIn()}>Sign in</button> 
+             <div className={styles.signIn}> 
+        <button className={styles.button} onClick={() => signIn()}>Sign in</button> 
         
         </div>
         )

@@ -66,7 +66,11 @@ console.log(e.target.value)
                 <div className={styles.imageWrapper}>
               <Image key={value.image} src={value.image} width="30px" height="30px" /> 
               </div>
+              <Link href={`/${value.name}`}>
+                <a>
               <h1 key={value.name}>{value.name}</h1>
+              </a>
+              </Link>
               </div>
               <div className={styles.blogsWrapper}>
               {value.blogs.map((value , index) => {
@@ -97,7 +101,11 @@ console.log(e.target.value)
                 <div className={styles.imageWrapper}>
         <Image src={value.image} width="30px" height="30px"/>
         </div>
+        <Link className={styles.userLink} href={`/${value.name}`}>
+          <a>
         <p>{value.name}</p>
+        </a>
+        </Link>
         </div>
         </div>
         </>

@@ -1,0 +1,65 @@
+.loading{
+    display: flex;
+    justify-content: center;
+    padding-top:35vh;
+    
+}
+.error{
+    display: flex;
+    color:red;
+    font-weight: 1000;
+    justify-content: center;
+    padding-top:35vh;
+    font-size: 5vw;
+}
+.notFound{
+    display: flex;
+    color: white;
+    font-weight: 1000;
+    justify-content: center;
+
+    padding-top: 35vh;
+    font-size: 5vw;
+}
+.continer{
+    display: flex;
+    flex-direction: column;
+
+}
+.userWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.imageWrapper{
+    border-radius: 50%;
+    overflow: hidden;
+}
+.deleteContainer{
+    position: fixed;
+    display: flex;
+    bottom: 50%;
+    left: 25%;
+    padding: 2vw;
+    flex-direction: column;
+    gap: 10px;
+    background-color: rgb(138, 138, 138);
+    border: 3px white solid;
+    border-radius: 5px;
+    width: fit-content;
+    color: black;
+    font-size: 5vh;
+}
+.delete{
+    background-color: #dc3545 !important;
+    width: fit-content;
+
+}
+.keep{
+    position: relative;
+    width: fit-content;
+}
+.buttonsWrapper{
+    display: flex;
+    gap: 20vw;
+}
