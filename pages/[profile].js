@@ -35,11 +35,10 @@ export default function Profile() {
 
    const router = useRouter();
 
+
    const { profile } = router.query;
 
-   let { data, error} = useSWR(`/api/${profile}`, fetcher)
-
-   
+   let {data, error} = useSWR(`/api/${profile}`, fetcher)
    if(loading || !loading){
     
    
