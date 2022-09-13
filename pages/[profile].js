@@ -23,7 +23,7 @@ export async function getServerSideProps(cxt) {
 }
 
 export default function Profile() {
-   
+
     const [deleteState, setDeleteState] = useState(false);
     const [loading, setLoading] = useState(false);
    
@@ -35,9 +35,13 @@ export default function Profile() {
    console.log(session) 
 
 
+
     const router = useRouter();
 
    const { profile } = router.query;
+
+  
+
 
    
 
