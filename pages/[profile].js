@@ -1,5 +1,3 @@
-import useSWR from "swr";
-import { useRouter } from "next/router";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import { useSession } from "next-auth/react";
@@ -10,50 +8,40 @@ import styles from '../styles/Profile.module.css'
 import Login from '../components/login'
 import Loader from "../components/Loader";
 import Link from "next/link";
+import prisma from "../lib/prisma";
 
 
 
 export async function getServerSideProps(cxt) {
+    
+   const user = await prisma.User.findUnique({
+        where: {
+            name: cxt.query.profile
+        }
+    }) 
+
 
     return {
         props:{
-            data: 'ServerSide'
+            serverData: user
         }
 }
 }
 
-export default function Profile() {
+export default function Profile(serverData) {
 
     const [deleteState, setDeleteState] = useState(false);
     const [loading, setLoading] = useState(false);
    
-    const fetcher = (...args) => fetch(...args).then(res => res.json())
+   
    
     const {data: session} = useSession()
 
-
+    console.log(serverData)
    console.log(session) 
-
-
-
-    const router = useRouter();
-
-   const profile = router.query.profile;
-
-  
-
-
-   
-
-   let {data, error} = useSWR(`/api/${profile}`, fetcher)
-  
     
-   
-    
-    if(error) return <div className={styles.error}>Failed To Load, <br/> Check your Internet</div>
-    if(!data) return <div className={styles.loading}><Loader /></div>
-    if(data.blogs === undefined) return <div className={styles.notFound}>404 <br/> User not found</div>
-    console.log(data)
+    if(serverData.serverData === null) return <div className={styles.notFound}>404 <br/> User not found</div>
+    console.log(serverData.serverData)
    
 
     const handleDelete = async (e) => {
@@ -92,16 +80,16 @@ export default function Profile() {
             <Login />
             
             <div>
-         <Image alt="" src={data.image} width="30px" height="30px"/>
+         <Image alt="" src={serverData.serverData.image} width="30px" height="30px"/>
             </div>
-            <h1>{data.name}</h1>
-            <Link href={`mailto:${data.email}`}>
+            <h1>{serverData.serverData.name}</h1>
+            <Link href={`mailto:${serverData.serverData.email}`}>
                 <a>
-            <p>{data.email}</p>
+            <p>{serverData.serverData.email}</p>
                 </a>
             </Link>
             <ul>
-                {data.blogs.map((value, index) => {
+                {serverData.serverData.blogs.map((value, index) => {
                    return(
                     <li key={index}> <ReactMarkdown key={index}>{value}</ReactMarkdown></li>
                    )
@@ -125,18 +113,18 @@ export default function Profile() {
             <Login />
             <div className={styles.userWrapper}>
             <div className={styles.imageWrapper}>
-         <Image alt="" src={data.image} width="30px" height="30px"/>
+         <Image alt="" src={serverData.serverData.image} width="30px" height="30px"/>
             </div>
-            <h1>{data.name}</h1>
-            <Link href={`mailto:${data.email}`}>
+            <h1>{serverData.serverData.name}</h1>
+            <Link href={`mailto:${serverData.serverData.email}`}>
                 <a>
-            <p>{data.email}</p>
+            <p>{serverData.serverData.email}</p>
                 </a>
             </Link>
             </div>
             <Form />
             <ul>
-                {data.blogs.map((value, index) => {
+                {serverData.serverData.blogs.map((value, index) => {
                    return(
                     <div key={index}>
                     <li> <ReactMarkdown key={index}>{value}</ReactMarkdown></li>
