@@ -135,7 +135,7 @@ export default function Profile(serverData) {
                 })}
             </ul>
         </div>
-        <button className={styles.fristDeleteButton} value={session.user.name} onClick={() => {setDeleteState(!deleteState)}} >Delete Account</button>
+        <button className={styles.firstDeleteButton} value={session.user.name} onClick={() => {setDeleteState(!deleteState)}} >Delete Account</button>
         {deleteState && 
         <>
         <div className={styles.deleteContainer}>
