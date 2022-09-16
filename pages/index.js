@@ -128,8 +128,9 @@ console.log(e.target.value)
               <>
              {width < 780 && 
               <div>
-                
-                <button className={styles.showUsers} onClick={() => setClick(!click)}><Image src="/Users.svg" height="30px" width="30px"/></button>
+                <a> 
+                <button className={styles.showUsers} onClick={() => setClick(!click)}><Image src="/Users.svg" height="25px" width="25px"/></button>
+                </a>
                 {click && 
                 <div className={styles.users_mobile}>
                 <h5 style={{margin: '0px'}}> Users </h5>
