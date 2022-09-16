@@ -110,6 +110,7 @@
 
 .readMore{
   display: flex;
+  margin: 15px;
 }
 
 .blogsWrapper{
