@@ -39,7 +39,7 @@ export default function Form() {
             </form>
         }
         {loading && 
-        <div>
+        <div className={loading}>
             <Loader /> 
         </div> 
          }
