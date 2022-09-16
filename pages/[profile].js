@@ -103,8 +103,9 @@ export default function Profile(serverData) {
         
         <>
         {loading && 
-        
+        <div>
         <Loader />
+        </div>
 }
         {!loading &&
         
