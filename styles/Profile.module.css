@@ -39,9 +39,10 @@
     position: fixed;
     display: flex;
     bottom: 50%;
-    left: 25%;
     padding: 2vw;
     flex-direction: column;
+    align-items: center;
+    align-self: center;
     gap: 10px;
     background-color: rgb(138, 138, 138);
     border: 3px white solid;
@@ -49,6 +50,9 @@
     width: fit-content;
     color: black;
     font-size: 5vh;
+}
+.firstDeleteButton{
+    margin: 20px;
 }
 .delete{
     background-color: #dc3545 !important;
