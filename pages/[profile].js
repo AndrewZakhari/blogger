@@ -103,9 +103,9 @@ export default function Profile(serverData) {
         
         <>
         {loading && 
-        <div className={styles.loading}>
+        
         <Loader />
-        </div>}
+}
         {!loading &&
         
             <>
