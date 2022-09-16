@@ -9,6 +9,17 @@
   max-height: 20vh; 
   overflow: hidden;
 }
+.blog_mobile{
+  border: 10px white solid;
+  border-radius: 5px;
+  background-color: #fffffe;
+  color: black;
+  box-shadow: #777676 1px 5px 5px;
+  box-sizing: content-box;
+
+  max-height: 30vh; 
+  overflow: hidden;
+}
 .openedBlog{
 
   position: relative;
@@ -24,11 +35,30 @@
   align-content: center;
 
 }
+.openedBlog_mobile{
+  position: relative;
+  border: 10px white solid;
+  border-radius: 5px;
+  background-color: #fffffe;
+  color: black;
+  box-shadow: #777676 1px 5px 5px;
+  box-sizing: content-box;
+  max-width: 95vw;
+  max-height: 95vh;
+  justify-self: center;
+  align-content: center;
+}
 .openedBlogWrapper{
   display: flex;
   flex-direction: column;
   width: fit-content;
   align-items: center;
+}
+.openedBlogWrapper_mobile{
+   display: flex;
+  flex-direction: column;
+  width: fit-content;
+  
 }
 .viewLess{
   width: fit-content;
@@ -68,6 +98,8 @@
   bottom: 0%;
   font-size: 30px;
   z-index: 999;
+   animation-name:  userMenu;
+   animation-duration: 1s;
 }
 
 .nameAndImage{
@@ -85,6 +117,8 @@
   flex-direction: row; 
   flex-wrap: wrap;
   gap: 5vw;
+  animation-name: wrapperAnimation;
+  animation-duration: 1s;
 }
 .unexpandedBlogs{
   display: flex;
@@ -118,10 +152,70 @@
   align-items: center;
   gap: 20px;
 }
-
-
-
-
+.showUsers{
+  position: fixed ;
+  border-radius: 50%;
+  right: 5px;
+  top: 5px;
+  z-index: 999999;
+ animation-name: userMenu;
+ animation-duration: 1s;
+}
+.users_mobile{
+  position: fixed;
+  padding-right: 30px;
+  padding-top: 20px;
+  border: 2px solid #606050;
+  border-radius: 5px;
+  background-color: black;
+  align-items: center;
+  display:flex;
+  flex-direction: column;
+  top: 0%;
+  max-width: max-content;
+  padding: 10px;
+  right: 0%;
+  bottom: 0%;
+  font-size: 30px;
+  z-index: 999;
+}
+.nameAndImage_mobile{
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+.imageWrapper_mobile{
+  padding-top: 5vh;
+  overflow: hidden;
+}
+@keyframes userMenu {
+  0%{
+    right: -100px;
+    
+  }
+  50%{
+    right: 20px;
+    
+  }
+  100%{
+    right: 0px;
+  
+  }
+}
+@keyframes wrapperAnimation {
+    0%{
+      width: 200vw;
+      filter: blur(5px);
+    } 
+    50%{
+      filter: blur(2.5px);
+      gap: 0px;
+    }
+    100%{
+      width: fit-content;
+      gap: 5vw;
+    }
+}
 
 
 

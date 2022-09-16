@@ -24,7 +24,7 @@
 .continer{
     display: flex;
     flex-direction: column;
-
+    
 }
 .userWrapper{
     display: flex;

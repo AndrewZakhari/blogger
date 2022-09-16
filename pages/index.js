@@ -25,6 +25,8 @@ export async function getServerSideProps() {
 export default function Home(data) {
 
   console.log(data.data)
+
+  const [click, setClick] = useState();
   
   const [openedBlog , setOpenedBlog]  = useState()
 
@@ -38,10 +40,16 @@ console.log(e.target.value)
 
   const { data1, error } = useSWR('/api/sessionCheck', fetcher)
 
+  
+
+  
+
   if(error) {
     const timer = setTimeout(() => {
       return
     }, 2000)
+    let width = (window.innerWidth > 0) ? window.innerWidth : screen.width
+    console.log(width)
   return (
    <>
    {clearTimeout(timer)}
@@ -72,6 +80,7 @@ console.log(e.target.value)
               </a>
               </Link>
               </div>
+              {width > 780 && 
               <div className={styles.blogsWrapper}>
               {value.blogs.map((value , index) => {
                 if(value === openedBlog) {
@@ -93,8 +102,51 @@ console.log(e.target.value)
                 } 
               })}
               </div>
+          }{width < 780 && 
+            <div className={styles.blogsWrapper_mobile}>
+              {value.blogs.map((value , index) => {
+                if(value === openedBlog) {
+                  console.log(openedBlog)
+                  return (
+                    <div className={styles.openedBlogWrapper_mobile}>
+                      <ReactMarkdown className={styles.openedBlog_mobile} name="blog" key={index}>{value}</ReactMarkdown>
+                      <button className={styles.viewLess} onClick={() => setOpenedBlog()}>View less</button>
+                    </div>
+                  )
+                }
+                else{
+                return (
+                 <div> 
+                  <ReactMarkdown className={styles.blog_mobile} name="blog" key={index}>{value}</ReactMarkdown>
+                  <button className={styles.viewMore} value={value} onClick={openBlog}>View More</button>
+                 </div> 
+                )
+                } 
+              })}
+              </div>
+          }
               <>
-              
+             {width < 780 && 
+              <div>
+                
+                <button className={styles.showUsers} onClick={() => setClick(!click)}><Image src="/Users.svg" height="30px" width="30px"/></button>
+                {click && 
+                <div className={styles.users_mobile}>
+                <h5 style={{margin: '0px'}}> Users </h5>
+                <div className={styles.nameAndImage_mobile}>
+                <div className={styles.imageWrapper_mobile}>
+           <Image alt="" src={value.image} width="30px" height="30px"/>
+           </div>
+            <Link className={styles.userLink_mobile} href={`/${value.name}`}>
+             <a>
+            <p>{value.name}</p>
+            </a>
+           </Link>
+           </div>
+           </div>
+                }
+              </div> 
+             }{width > 780 &&
               <div className={styles.users}>
                 <h5 style={{margin: '0px'}}> Users </h5>
                 <div className={styles.nameAndImage}>
@@ -108,6 +160,7 @@ console.log(e.target.value)
         </Link>
         </div>
         </div>
+          } 
         </>
             </div>
           )}else if(value.blogs === []){
