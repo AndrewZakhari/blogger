@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSession , signIn } from "next-auth/react";
 import Link from "next/link";
 import styles from '../styles/Form.module.css'
+import Loader from './Loader';
 
 export default function Form() {
     const { data: session } = useSession();
@@ -39,7 +40,7 @@ export default function Form() {
         }
         {loading && 
         <div>
-            <p>...Loading</p>
+            <Loader /> 
         </div> 
          }
         
