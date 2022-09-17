@@ -12,7 +12,14 @@ export default function Login() {
         
         return (
              <div className={styles.signIn}> 
-        <button className={styles.button} onClick={() => signIn()}>Sign in</button> 
+        <button className={styles.button} onClick={() => signIn()}>Sign in</button>
+        <div className={styles.home}>
+            <Link  href="/">
+                <a>
+            <Image alt="" src="/home.svg" height="30px" width="30px" />
+            </a>
+            </Link> 
+            </div> 
         
         </div>
         )

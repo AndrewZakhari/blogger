@@ -8,8 +8,8 @@
 }
 .signIn{
     display: flex;
-    flex-direction: column;
-    gap: 30px;
+    flex-direction: row;
+    gap: 64px;
     align-items: center;
 }
 .button{
