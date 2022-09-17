@@ -144,6 +144,7 @@ console.log(e.target.value)
                 <div className={styles.users_mobile}>
                 <h5 style={{margin: '0px'}}> Users </h5>
                 {data.data.map((value, index) => {
+                  return (
                 <div key={index} className={styles.nameAndImage_mobile}>
                 <div className={styles.imageWrapper_mobile}>
            <Image alt="" src={value.image} width="30px" height="30px"/>
@@ -154,7 +155,7 @@ console.log(e.target.value)
             </a>
            </Link>
            </div>
-           })}
+           )})}
            </div>
                 }
               </div> 
