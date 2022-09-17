@@ -123,7 +123,7 @@ export default function Profile(serverData) {
                 </a>
             </Link>
             </div>
-            {session.user.name !== serverData.serverData.name &&
+            {session.user.name === serverData.serverData.name &&
             <Form />
 }
             <ul>
