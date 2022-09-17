@@ -123,7 +123,9 @@ export default function Profile(serverData) {
                 </a>
             </Link>
             </div>
+            {session.user.name !== serverData.serverData.name &&
             <Form />
+}
             <ul>
                 {serverData.serverData.blogs.map((value, index) => {
                    return(

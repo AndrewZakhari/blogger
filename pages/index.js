@@ -24,7 +24,7 @@ export async function getServerSideProps() {
 
 export default function Home(data) {
 
-  console.log(data.data)
+  
 
   const [click, setClick] = useState();
   
@@ -49,7 +49,7 @@ console.log(e.target.value)
       return
     }, 2000)
     let width = (window.innerWidth > 0) ? window.innerWidth : screen.width
-    console.log(width)
+    
   return (
    <>
    {clearTimeout(timer)}
@@ -67,10 +67,12 @@ console.log(e.target.value)
       </div>    
       <div>
         {data.data.map((value, index) => {
-          if(value.blogs !== []){
+          if(value.blogs.length !== 0){
+           
           return (
             <div key={index}>
               <div className={styles.userWrapper}>
+                {console.log(value.blogs)}
                 <div className={styles.imageWrapper}>
               <Image alt="" key={value.image} src={value.image} width="30px" height="30px" /> 
               </div>
@@ -81,10 +83,11 @@ console.log(e.target.value)
               </Link>
               </div>
               {width > 780 && 
-              <div className={styles.blogsWrapper}>
+              
+                <div className={styles.blogsWrapper}>
               {value.blogs.map((value , index) => {
                 if(value === openedBlog) {
-                  console.log(openedBlog)
+                  
                   return (
                     <div className={styles.openedBlogWrapper}>
                       <ReactMarkdown className={styles.openedBlog} name="blog" key={index}>{value}</ReactMarkdown>
@@ -92,6 +95,7 @@ console.log(e.target.value)
                     </div>
                   )
                 }
+              
                 else{
                 return (
                  <div> 
@@ -100,7 +104,8 @@ console.log(e.target.value)
                  </div> 
                 )
                 } 
-              })}
+        })}
+              
               </div>
           }{width < 780 && 
             <div className={styles.blogsWrapper_mobile}>
@@ -125,7 +130,11 @@ console.log(e.target.value)
               })}
               </div>
           }
-              <>
+          
+            </div>
+          )}
+        })}
+            <>
              {width < 780 && 
               <div>
                 <a> 
@@ -134,7 +143,8 @@ console.log(e.target.value)
                 {click && 
                 <div className={styles.users_mobile}>
                 <h5 style={{margin: '0px'}}> Users </h5>
-                <div className={styles.nameAndImage_mobile}>
+                {data.data.map((value, index) => {
+                <div key={index} className={styles.nameAndImage_mobile}>
                 <div className={styles.imageWrapper_mobile}>
            <Image alt="" src={value.image} width="30px" height="30px"/>
            </div>
@@ -144,34 +154,31 @@ console.log(e.target.value)
             </a>
            </Link>
            </div>
+           })}
            </div>
                 }
               </div> 
              }{width > 780 &&
               <div className={styles.users}>
                 <h5 style={{margin: '0px'}}> Users </h5>
-                <div className={styles.nameAndImage}>
+                {data.data.map((value, index) => {
+                  return(
+                <div key={index} className={styles.nameAndImage}>
+                  
                 <div className={styles.imageWrapper}>
+                  
         <Image alt="" src={value.image} width="30px" height="30px"/>
         </div>
         <Link className={styles.userLink} href={`/${value.name}`}>
           <a>
-        <p>{value.name}</p>
+          <p>{value.name}</p>
         </a>
         </Link>
         </div>
+          )})}
         </div>
           } 
         </>
-            </div>
-          )}else if(value.blogs === []){
-            return (
-            <div>
-              
-              </div>
-              )
-          }
-        })}
       </div> 
 
     </div>
