@@ -11,6 +11,8 @@
     flex-direction: row;
     gap: 64px;
     align-items: center;
+    
+    justify-content: center;
 }
 .button{
     width: fit-content;
