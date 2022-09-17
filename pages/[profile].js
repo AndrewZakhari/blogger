@@ -78,8 +78,8 @@ export default function Profile(serverData) {
         <>
         <div className={styles.container}>
             <Login />
-            
-            <div>
+            <div className={styles.userWrapper}>
+            <div className={styles.imageWrapper}>
          <Image alt="" src={serverData.serverData.image} width="30px" height="30px"/>
             </div>
             <h1>{serverData.serverData.name}</h1>
@@ -95,6 +95,7 @@ export default function Profile(serverData) {
                    )
                 })}
             </ul>
+            </div>
         </div>
         </>
     )
