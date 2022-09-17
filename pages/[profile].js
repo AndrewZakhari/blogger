@@ -73,7 +73,7 @@ export default function Profile(serverData) {
     }
 
     
-    if(!session){
+    if(!session || session.user.name !== serverData.serverData.name){
     return (
         <>
         <div className={styles.container}>
@@ -98,7 +98,7 @@ export default function Profile(serverData) {
         </div>
         </>
     )
-}else if(session){
+}else if(session.user.name === serverData.serverData.name){
     return (
         
         <>
@@ -123,9 +123,9 @@ export default function Profile(serverData) {
                 </a>
             </Link>
             </div>
-            {session.user.name === serverData.serverData.name &&
+            
             <Form />
-}
+
             <ul>
                 {serverData.serverData.blogs.map((value, index) => {
                    return(
