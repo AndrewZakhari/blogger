@@ -185,10 +185,14 @@
   display: flex;
   flex-wrap: nowrap;
   gap: 10px;
+  padding-top: 35px;
 }
 .imageWrapper_mobile{
-  padding-top: 5vh;
+
   overflow: hidden;
+}
+.userLink_mobile{
+  margin:0;
 }
 @keyframes userMenu {
   0%{

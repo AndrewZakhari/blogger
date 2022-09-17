@@ -151,7 +151,7 @@ console.log(e.target.value)
            </div>
             <Link className={styles.userLink_mobile} href={`/${value.name}`}>
              <a>
-            <p>{value.name}</p>
+            <p style={{margin: "0px"}}>{value.name}</p>
             </a>
            </Link>
            </div>
